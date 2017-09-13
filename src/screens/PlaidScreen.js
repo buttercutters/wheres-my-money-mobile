@@ -4,7 +4,7 @@ import PlaidAuthenticator from 'react-native-plaid-link';
 import axios from 'axios';
 import qs from 'qs';
 import Config from '../../config.json';
-import { auth } from '../../firebase';
+import store from '../store/userStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +24,7 @@ export default class PlaidScreen extends React.Component {
     super();
     this.state = {
       linkButtonPressed: false,
+      uniqueUserId: store.getState().uniqueUserId,
     };
     this.onMessage = this.onMessage.bind(this);
     this.exchangePublicToken = this.exchangePublicToken.bind(this);
@@ -44,7 +45,7 @@ export default class PlaidScreen extends React.Component {
       url: 'http://localhost:5000/testproject-6177f/us-central1/exchangePublicToken',
       payload: qs.stringify({
         publicToken,
-        uniqueUserId: auth.currentUser.uid,
+        uniqueUserId: this.state.uniqueUserId,
       }),
     };
     axios.post(config.url, config.payload)

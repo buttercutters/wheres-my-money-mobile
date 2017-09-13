@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 import qs from 'qs';
+import store from '../store/userStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,20 +17,18 @@ export default class DashboardScreen extends React.Component {
 
   constructor() {
     super();
-    this.state = {
-      user: '2T5SetDIL2OJJ8AZtDACuuVUrGz1',
-      dailySpending: null,
-    };
+    this.state = store.getState();
   }
 
   componentWillMount() {
-    this.getDailySpending();
+    // this.getDailySpending();
   }
 
   getDailySpending() {
+    console.log('this.state.uniqueUserId', this.state.uniqueUserId);
     const config = {
       url: 'http://localhost:5000/testproject-6177f/us-central1/getDailySpending',
-      payload: qs.stringify({ uniqueUserId: this.state.user }),
+      payload: qs.stringify({ uniqueUserId: this.state.uniqueUserId }),
     };
     axios.post(config.url, config.payload)
       .then((response) => { // eslint-disable-line
