@@ -23,6 +23,7 @@ export default class PlaidScreen extends React.Component {
   constructor() {
     super();
     this.state = {
+      data: {},
       linkButtonPressed: false,
       uniqueUserId: store.getState().uniqueUserId,
     };
@@ -31,6 +32,7 @@ export default class PlaidScreen extends React.Component {
   }
 
   onMessage(data) {
+    console.log('PLAID DATA:', data);
     if (data.action === 'plaid_link-undefined::connected') {
       console.log(data);
       this.setState(

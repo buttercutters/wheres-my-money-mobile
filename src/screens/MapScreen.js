@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { MapView } from 'expo';
+import PriceMarker from '../components/PriceMarker';
 
 const styles = StyleSheet.create({
   container: {
@@ -16,13 +18,41 @@ export default class MapScreen extends React.Component {
     super();
     this.state = {
       user: null,
+      initialRegion: {
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
     };
   }
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Map of your spendings</Text>
-      </View>
+      <MapView
+        style={{ flex: 1 }}
+        initialRegion={this.state.initialRegion}
+      >
+        <MapView.Marker
+          coordinate={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+          }}
+          title={'Hellow World'}
+          description={'A marker'}
+        >
+          <PriceMarker amount={99} />
+        </MapView.Marker>
+
+      </MapView>
     );
   }
 }
+
+// dhaka
+// 23.777176
+// 90.399452
+
+// SF
+// 37.78825
+// -122.4324
+

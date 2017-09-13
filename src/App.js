@@ -51,15 +51,15 @@ export class App extends React.Component {
 // by default, the first Screen will load when App.js loads
 // in this case, it is app
 export default StackNavigator({
-  App: {
-    screen: App,
-  },
-  SignIn: {
-    screen: SignInScreen,
-  },
-  Plaid: {
-    screen: PlaidScreen,
-  },
+  // App: {
+  //   screen: App,
+  // },
+  // SignIn: {
+  //   screen: SignInScreen,
+  // },
+  // Plaid: {
+  //   screen: PlaidScreen,
+  // },
   Home: {
     screen: HomeScreen,
   },
