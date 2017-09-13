@@ -37,10 +37,10 @@ export default class MapScreen extends React.Component {
             latitude: 37.78825,
             longitude: -122.4324,
           }}
-          title={'Hellow World'}
-          description={'A marker'}
+          title={'KFC'}
+          description={'September 14'}
         >
-          <PriceMarker amount={99} />
+          <PriceMarker amount={22.14} />
         </MapView.Marker>
 
       </MapView>
