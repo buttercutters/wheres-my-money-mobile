@@ -32,19 +32,23 @@ export default class App extends React.Component {
   login = () => {
     Google.logInAsync({
       iosClientId: Config.REACT_APP_IOS_CLIENT_ID,
+      scopes: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
     })
       .then((result) => {
         if (result.type === 'success') {
           const credential = firebase.auth.GoogleAuthProvider.credential(result.idToken);
           firebase.auth().signInWithCredential(credential);
+          // console.log('RESULT FROM GOOGLE LOGIN', result.accessToken);
         }
+        return result.accessToken;
       })
-      .then(() => {
+      .then((accessToken) => {
         auth.currentUser.getIdToken()
           .then((idToken) => {
+            // console.log(47, accessToken);
             const config = {
               url: 'http://localhost:5000/testproject-6177f/us-central1/addUser',
-              payload: qs.stringify({ idToken }),
+              payload: qs.stringify({ idToken, OAuthToken: accessToken }),
             };
             axios.post(config.url, config.payload);
           });
