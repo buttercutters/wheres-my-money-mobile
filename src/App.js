@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons';
 import PlaidScreen from './screens/PlaidScreen';
 import HomeScreen from './screens/HomeScreen';
 import SignInScreen from './screens/SignInScreen';
