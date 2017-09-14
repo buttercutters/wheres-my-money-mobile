@@ -14,15 +14,14 @@ const styles = StyleSheet.create({
 });
 
 export default class SettingsScreen extends React.Component {
-  // static navigationOptions = {
-  //   title: 'Dashboard',
-  // };
+
   constructor() {
     super();
     this.state = {
       user: null,
     };
   }
+
   render() {
     return (
       <View style={styles.container}>
