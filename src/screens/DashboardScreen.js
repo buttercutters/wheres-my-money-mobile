@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { AlertIOS, StyleSheet, Text, View } from 'react-native';
 import axios from 'axios';
 import qs from 'qs';
 import store from '../store/userStore';
@@ -22,6 +22,10 @@ export default class DashboardScreen extends React.Component {
 
   componentWillMount() {
     // this.getDailySpending();
+    AlertIOS.alert(
+      'Account linked!',
+      'A Google Calendar has automagically been generated for you!'
+     );
   }
 
   getDailySpending() {
