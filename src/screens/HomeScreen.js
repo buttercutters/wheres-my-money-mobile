@@ -21,15 +21,15 @@ export default TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         switch (routeName) {
-          case 'Home':
+          case 'Map':
             iconName = Platform.OS === 'ios'
-              ? `ios-information-circle${focused ? '' : '-outline'}`
-              : 'md-information-circle';
+              ? `ios-map${focused ? '' : '-outline'}`
+              : 'google-maps';
             break;
-          case 'Links':
+          case 'Dashboard':
             iconName = Platform.OS === 'ios'
-              ? `ios-link${focused ? '' : '-outline'}`
-              : 'md-link';
+              ? `ios-apps${focused ? '' : '-outline'}`
+              : 'view-dashboard';
             break;
           case 'Settings':
             iconName = Platform.OS === 'ios'
