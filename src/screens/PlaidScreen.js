@@ -19,6 +19,7 @@ export default class PlaidScreen extends React.Component {
   // eslint-disable-next-line
   static navigationOptions = {
     title: 'Link Account',
+    headerLeft: null,
   };
   constructor() {
     super();
