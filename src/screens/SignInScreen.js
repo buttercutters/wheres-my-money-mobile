@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
 
 export default class App extends React.Component {
   static navigationOptions = {
-    title: 'Welcome',
+    title: 'Login',
+    headerLeft: null,
   };
   constructor() {
     super();
