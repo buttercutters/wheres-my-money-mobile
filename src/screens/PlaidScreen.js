@@ -23,6 +23,8 @@ export default class PlaidScreen extends React.Component {
   };
   constructor() {
     super();
+
+    // retrieve unique user id from redux store and set to state
     this.state = {
       data: {},
       linkButtonPressed: false,
@@ -33,9 +35,7 @@ export default class PlaidScreen extends React.Component {
   }
 
   onMessage(data) {
-    console.log('PLAID DATA:', data);
     if (data.action === 'plaid_link-undefined::connected') {
-      console.log(data);
       this.setState(
         { linkButtonPressed: false },
         () => this.exchangePublicToken(data.metadata.public_token),

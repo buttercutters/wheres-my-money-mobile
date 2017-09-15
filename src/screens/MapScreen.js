@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { MapView } from 'expo';
 import PriceMarker from '../components/PriceMarker';
+import store from '../store/userStore';
 
 const styles = StyleSheet.create({
   container: {
@@ -58,6 +59,8 @@ export default class MapScreen extends React.Component {
     );
   }
 }
+
+// co-ordinates for ez copy pasta
 
 // dhaka
 // 23.777176
