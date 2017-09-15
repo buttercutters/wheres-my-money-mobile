@@ -1,58 +1,60 @@
 import React from 'react';
-import { Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch } from 'native-base';
+import {
+  Container,
+  Header,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Left,
+  Body,
+  Right,
+  Switch
+} from 'native-base';
+
 
 export default class SettingsScreen extends React.Component {
 
   constructor() {
     super();
     this.state = {
-      user: null,
+      test: false,
+      test1: false,
+      test2: false
     };
   }
 
   render() {
     return (
       <Container>
-      <Header />
-      <Content>
-        <List>
-          <ListItem icon>
-            <Left>
-              <Icon name="plane" />
-            </Left>
-            <Body>
-              <Text>Airplane Mode</Text>
-            </Body>
-            <Right>
-              <Switch value={false} />
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Icon name="wifi" />
-            </Left>
-            <Body>
-              <Text>Wi-Fi</Text>
-            </Body>
-            <Right>
-              <Text>GeekyAnts</Text>
-              <Icon name="arrow-forward" />
-            </Right>
-          </ListItem>
-          <ListItem icon>
-            <Left>
-              <Icon name="bluetooth" />
-            </Left>
-            <Body>
-              <Text>Bluetooth</Text>
-            </Body>
-            <Right>
-              <Text>On</Text>
-              <Icon name="arrow-forward" />
-            </Right>
-          </ListItem>
-        </List>
-      </Content>
+        <Content>
+          <List>
+            <ListItem icon>
+              <Body>
+                <Text>American Express</Text>
+              </Body>
+              <Right>
+                <Switch value={this.state.test = !(!true)}/>
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Body>
+                <Text>Chase</Text>
+              </Body>
+              <Right>
+                <Switch value={this.state.test1}/>
+              </Right>
+            </ListItem>
+            <ListItem icon>
+              <Body>
+                <Text>Capital One</Text>
+              </Body>
+              <Right>
+                <Switch value={this.state.test2}/>
+              </Right>
+            </ListItem>
+          </List>
+        </Content>
       </Container>
     );
   }
