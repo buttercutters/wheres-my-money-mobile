@@ -1,17 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 22,
-  },
-  item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-  },
-});
+import { Container, Header, Content, List, ListItem, Text, Icon, Left, Body, Right, Switch } from 'native-base';
 
 export default class SettingsScreen extends React.Component {
 
@@ -24,14 +12,48 @@ export default class SettingsScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <FlatList
-          data={[
-            { key: 'Chase' },
-          ]}
-          renderItem={({ item }) => <Text style={styles.item}>{item.key}</Text>}
-        />
-      </View>
+      <Container>
+      <Header />
+      <Content>
+        <List>
+          <ListItem icon>
+            <Left>
+              <Icon name="plane" />
+            </Left>
+            <Body>
+              <Text>Airplane Mode</Text>
+            </Body>
+            <Right>
+              <Switch value={false} />
+            </Right>
+          </ListItem>
+          <ListItem icon>
+            <Left>
+              <Icon name="wifi" />
+            </Left>
+            <Body>
+              <Text>Wi-Fi</Text>
+            </Body>
+            <Right>
+              <Text>GeekyAnts</Text>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+          <ListItem icon>
+            <Left>
+              <Icon name="bluetooth" />
+            </Left>
+            <Body>
+              <Text>Bluetooth</Text>
+            </Body>
+            <Right>
+              <Text>On</Text>
+              <Icon name="arrow-forward" />
+            </Right>
+          </ListItem>
+        </List>
+      </Content>
+      </Container>
     );
   }
 }
