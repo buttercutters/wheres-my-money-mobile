@@ -55,36 +55,23 @@ export default class SettingsScreen extends React.Component {
     return (
       <Container>
         <Content>
-          <List>
-            <Separator bordered>
-              <Text>Linked Accounts</Text>
-            </Separator>
-            <ListItem icon>
-              <Body>
-                <Text>Chase</Text>
-              </Body>
-              <Right>
-                <Switch value={this.state.test = !(!true)} />
-              </Right>
-            </ListItem>
-            <ListItem icon>
-              <Body>
-                <Text>Bank of America</Text>
-              </Body>
-              <Right>
-                <Switch value={this.state.test = !(!true)} />
-              </Right>
-            </ListItem>
-            <Separator bordered>
-              <Text>Delete your WWM Profile</Text>
-            </Separator>
-            <ListItem icon>
-              <Button transparent danger onPress={() => this.deleteProfile()}>
-                <Text>Delete Your Where's My Money Profile</Text>
-              </Button>
-            </ListItem>
-          </List>
-          
+          <Separator bordered>
+            <Text>Linked Accounts</Text>
+          </Separator>
+          <ListItem last>
+            <Body>
+              <Text>Chase</Text>
+            </Body>
+            <Right>
+              <Switch value={this.state.test = !(!true)} />
+            </Right>
+          </ListItem>
+          <Separator bordered>
+            <Text>Delete your WWM Profile</Text>
+          </Separator>
+          <ListItem last>
+            <Text style={{ color: 'red' }} onPress={() => this.deleteProfile()}>Delete Your Where's My Money Profile</Text>
+          </ListItem>          
         </Content>
       </Container>
     );
