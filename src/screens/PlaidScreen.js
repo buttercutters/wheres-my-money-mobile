@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Button } from 'react-native';
-import PlaidAuthenticator from 'react-native-plaid-link';
+// import PlaidAuthenticator from 'react-native-plaid-link';
 import axios from 'axios';
 import qs from 'qs';
 import Config from '../../config.json';
 import store from '../store/userStore';
+import PlaidAuthenticator from '../components/PlaidLink';
 
 const styles = StyleSheet.create({
   container: {
@@ -73,7 +74,7 @@ export default class PlaidScreen extends React.Component {
       <PlaidAuthenticator
         onMessage={this.onMessage}
         publicKey={Config.REACT_APP_PLAID_PUBLIC_KEY}
-        env="sandbox"
+        env="development"
         product="auth,transactions"
         clientName="Wheres My Money"
       />
