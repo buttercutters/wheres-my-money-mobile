@@ -1,13 +1,10 @@
 import React from 'react';
 import { AlertIOS } from 'react-native';
 import {
-  Button,
   Container,
   Content,
-  List,
   ListItem,
   Text,
-  Left,
   Body,
   Right,
   Separator,
@@ -30,6 +27,7 @@ export default class SettingsScreen extends React.Component {
 
   deleteProfile() {
     const uniqueUserId = this.state.uniqueUserId;
+    console.log(uniqueUserId);
     const config = {
       url: 'http://localhost:5000/testproject-6177f/us-central1/deleteUserProfile',
       payload: qs.stringify({ uniqueUserId }),
@@ -71,7 +69,7 @@ export default class SettingsScreen extends React.Component {
           </Separator>
           <ListItem onPress={() => this.deleteProfile()} last>
             <Text style={{ color: 'red' }}>Delete Your Where's My Money Profile</Text>
-          </ListItem>          
+          </ListItem>
         </Content>
       </Container>
     );
