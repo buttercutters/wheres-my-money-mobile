@@ -69,8 +69,8 @@ export default class SettingsScreen extends React.Component {
           <Separator bordered>
             <Text>Delete your WWM Profile</Text>
           </Separator>
-          <ListItem last>
-            <Text style={{ color: 'red' }} onPress={() => this.deleteProfile()}>Delete Your Where's My Money Profile</Text>
+          <ListItem onPress={() => this.deleteProfile()} last>
+            <Text style={{ color: 'red' }}>Delete Your Where's My Money Profile</Text>
           </ListItem>          
         </Content>
       </Container>
