@@ -17,8 +17,6 @@ const styles = StyleSheet.create({
 
 export class App extends React.Component {
 
-
-
   // set options for stack navigation
   static navigationOptions = {
     title: 'Welcome',
