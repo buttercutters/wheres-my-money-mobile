@@ -4,10 +4,8 @@ import {
   Button,
   Container,
   Content,
-  List,
   ListItem,
   Text,
-  Left,
   Body,
   Right,
   Separator,
@@ -71,7 +69,7 @@ export default class SettingsScreen extends React.Component {
           </Separator>
           <ListItem onPress={() => this.deleteProfile()} last>
             <Text style={{ color: 'red' }}>Delete Your Where's My Money Profile</Text>
-          </ListItem>          
+          </ListItem>
         </Content>
       </Container>
     );
