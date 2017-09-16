@@ -1,6 +1,7 @@
 import React from 'react';
 import { AlertIOS } from 'react-native';
 import {
+  Button,
   Container,
   Content,
   ListItem,
@@ -27,7 +28,6 @@ export default class SettingsScreen extends React.Component {
 
   deleteProfile() {
     const uniqueUserId = this.state.uniqueUserId;
-    console.log(uniqueUserId);
     const config = {
       url: 'http://localhost:5000/testproject-6177f/us-central1/deleteUserProfile',
       payload: qs.stringify({ uniqueUserId }),
