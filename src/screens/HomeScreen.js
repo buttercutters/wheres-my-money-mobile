@@ -1,13 +1,11 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-
-import Colors from '../constants/Colors';
-
 import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { Ionicons } from '@expo/vector-icons';
 import MapScreen from './MapScreen';
 import SettingsScreen from './SettingsScreen';
 import DashboardScreen from './DashboardScreen';
+import Colors from '../constants/Colors';
 
 export default TabNavigator(
   {
