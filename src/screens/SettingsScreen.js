@@ -25,20 +25,24 @@ export default class SettingsScreen extends React.Component {
       uniqueUserId: store.getState().uniqueUserId,
     };
     this.deleteProfile = this.deleteProfile.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   
   logout() {
-    
+    store.dispatch({
+      type: 'LOG_OUT',
+    });
+    this.navigateToApp();
   }
 
-  deleteProfileConfirm(){
+  deleteProfileConfirm() {
     AlertIOS.alert(
       'Delete profile',
       'Do you wish to delete the profile?',
       [
         { text: 'Okay', onPress: () => this.deleteProfile(), style: 'cancel' },
-        { text: 'Cancel', style: 'cancel' }
+        { text: 'Cancel', style: 'cancel' },
       ],
     );
   }
