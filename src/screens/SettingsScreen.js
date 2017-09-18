@@ -79,16 +79,33 @@ export default class SettingsScreen extends React.Component {
               <Switch value={this.state.test = !(!true)} />
             </Right>
           </ListItem>
+
+          <Separator bordered>
+          </Separator>
+
+          <ListItem onPress={() => this.deleteProfileConfirm()} last>
+            <Body>
+              <Text>Link new account</Text>
+            </Body>
+            <Right>
+
+            </Right>
+          </ListItem>
+          
           <Separator bordered>
             <Text>Delete your WWM Profile</Text>
           </Separator>
 
           <ListItem onPress={() => this.deleteProfileConfirm()} last>
-            <Text style={{ color: 'red' }}>Delete Your Where's My Money Profile</Text>
+            <Body>
+              <Text style={{ color: 'red', textAlign: 'center' }}>Delete Your Where's My Money Profile</Text>
+            </Body>
           </ListItem>
 
           <ListItem onPress={() => this.logout()} last>
-            <Text style={{ color: 'red' }}>Logout</Text>
+            <Body>
+              <Text style={{ color: 'red', textAlign: 'center' }}>Logout</Text>
+            </Body>
           </ListItem>
 
         </Content>
