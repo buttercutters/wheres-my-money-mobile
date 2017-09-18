@@ -11,6 +11,10 @@ function userStore(state = defaultState, action) {
       return Object.assign({}, state, {
         uniqueUserId: action.uniqueUserId,
       });
+    case 'LOG_OUT':
+      return Object.assign({}, state, {
+        uniqueUserId: null,
+      });
     default:
       return state;
   }
