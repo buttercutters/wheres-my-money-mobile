@@ -27,6 +27,7 @@ export default class SettingsScreen extends React.Component {
     this.deleteProfile = this.deleteProfile.bind(this);
   }
 
+  
   logout() {
     
   }
@@ -62,8 +63,8 @@ export default class SettingsScreen extends React.Component {
       .catch(error => console.log(error));
   }
 
-  navigateToPlaid = () => {
-
+  navigateToPlaid() {
+    this.props.navigation.navigate('Plaid');
   }
 
   navigateToApp = () => {
@@ -94,7 +95,7 @@ export default class SettingsScreen extends React.Component {
               <Text>Link new account</Text>
             </Body>
             <Right>
-              <Icon onPress={() => this.props.navigation.navigate('Plaid')} name="add" />
+              <Icon onPress={this.navigateToPlaid.bind(this)} name="add" />
             </Right>
           </ListItem>
           

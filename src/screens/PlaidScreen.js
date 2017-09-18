@@ -74,7 +74,7 @@ export default class PlaidScreen extends React.Component {
       <PlaidAuthenticator
         onMessage={this.onMessage}
         publicKey={Config.REACT_APP_PLAID_PUBLIC_KEY}
-        env="development"
+        env="sandbox"
         product="auth,transactions"
         clientName="Wheres My Money"
       />
