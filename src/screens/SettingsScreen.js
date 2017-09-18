@@ -25,6 +25,17 @@ export default class SettingsScreen extends React.Component {
     this.deleteProfile = this.deleteProfile.bind(this);
   }
 
+  deleteProfileConfirm(){
+    AlertIOS.alert(
+      'Delete profile',
+      'Do you wish to delete the profile?',
+      [
+        { text: 'Okay', onPress: () => this.deleteProfile(), style: 'cancel' },
+        { text: 'Cancel', style: 'cancel' }
+      ],
+    );
+  }
+
   deleteProfile() {
     const uniqueUserId = this.state.uniqueUserId;
     console.log(uniqueUserId);
@@ -67,9 +78,15 @@ export default class SettingsScreen extends React.Component {
           <Separator bordered>
             <Text>Delete your WWM Profile</Text>
           </Separator>
-          <ListItem onPress={() => this.deleteProfile()} last>
+
+          <ListItem onPress={() => this.deleteProfileConfirm()} last>
             <Text style={{ color: 'red' }}>Delete Your Where's My Money Profile</Text>
           </ListItem>
+
+          <ListItem onPress={() => this.deleteProfileConfirm()} last>
+            <Text style={{ color: 'red' }}>Logout</Text>
+          </ListItem>
+
         </Content>
       </Container>
     );
