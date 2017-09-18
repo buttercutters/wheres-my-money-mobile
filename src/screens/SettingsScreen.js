@@ -25,6 +25,10 @@ export default class SettingsScreen extends React.Component {
     this.deleteProfile = this.deleteProfile.bind(this);
   }
 
+  logout() {
+
+  }
+
   deleteProfileConfirm(){
     AlertIOS.alert(
       'Delete profile',
@@ -83,7 +87,7 @@ export default class SettingsScreen extends React.Component {
             <Text style={{ color: 'red' }}>Delete Your Where's My Money Profile</Text>
           </ListItem>
 
-          <ListItem onPress={() => this.deleteProfileConfirm()} last>
+          <ListItem onPress={() => this.logout()} last>
             <Text style={{ color: 'red' }}>Logout</Text>
           </ListItem>
 
