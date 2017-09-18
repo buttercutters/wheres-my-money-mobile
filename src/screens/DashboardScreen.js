@@ -22,10 +22,12 @@ export default class DashboardScreen extends React.Component {
 
   componentWillMount() {
     // this.getDailySpending();
-    AlertIOS.alert(
-      'Account linked!',
-      'A Google Calendar has automagically been generated for you!'
-     );
+    if (store.getState().firstTimeUser) {
+      AlertIOS.alert(
+        'Account linked!',
+        'A Google Calendar has automagically been generated for you!',
+      );
+    }
   }
 
   getDailySpending() {
