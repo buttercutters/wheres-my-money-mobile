@@ -32,12 +32,14 @@ export default class App extends React.Component {
   }
 
   login = () => {
+    // authenticate with Google using expo API
     Google.logInAsync({
       iosClientId: Config.REACT_APP_IOS_CLIENT_ID,
       scopes: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
     })
       .then((result) => {
         if (result.type === 'success') {
+          // authenticate locally with firebase
           const credential = firebase.auth.GoogleAuthProvider.credential(result.idToken);
           firebase.auth().signInWithCredential(credential);
         }
@@ -50,19 +52,28 @@ export default class App extends React.Component {
               url: 'http://localhost:5000/testproject-6177f/us-central1/addUser',
               payload: qs.stringify({ idToken, OAuthToken: accessToken }),
             };
-            axios.post(config.url, config.payload);
+            // send idToken and accessToken for server-side authentication and Google calendar creation
+            axios.post(config.url, config.payload)
+              .then((response) => {
+                if (response.data.userExists) {
+                  this.navigateToHome();
+                } else {
+                  const uid = auth.currentUser.uid;
+                  store.dispatch({
+                    type: 'LOG_IN',
+                    uniqueUserId: uid,
+                    firstTimeUser: true,
+                  });
+                  this.navigateToPlaid();
+                }
+              })
+              .catch(error => console.log(error));
           });
-      })
-      .then(() => {
-        // dispatch unique user id to redux store
-        const uid = auth.currentUser.uid;
-        store.dispatch({
-          type: 'LOG_IN',
-          uniqueUserId: uid,
-        });
-      })
-      .then(() => this.navigateToPlaid())
-      .catch(error => console.log(error));
+      });
+  }
+
+  navigateToHome = () => {
+    this.props.navigation.navigate('Home');
   }
 
   navigateToPlaid = () => {
