@@ -9,7 +9,9 @@ import {
   Right,
   Separator,
   Switch,
+  Icon
 } from 'native-base';
+import { StackNavigator } from 'react-navigation';
 import axios from 'axios';
 import qs from 'qs';
 import store from '../store/userStore';
@@ -60,6 +62,10 @@ export default class SettingsScreen extends React.Component {
       .catch(error => console.log(error));
   }
 
+  navigateToPlaid = () => {
+
+  }
+
   navigateToApp = () => {
     this.props.navigation.navigate('App');
   }
@@ -83,17 +89,17 @@ export default class SettingsScreen extends React.Component {
           <Separator bordered>
           </Separator>
 
-          <ListItem onPress={() => this.deleteProfileConfirm()} last>
+          <ListItem last>
             <Body>
               <Text>Link new account</Text>
             </Body>
             <Right>
-
+              <Icon onPress={() => this.props.navigation.navigate('Plaid')} name="add" />
             </Right>
           </ListItem>
           
           <Separator bordered>
-            <Text>Delete your WWM Profile</Text>
+            <Text>WWM Profile Management.</Text>
           </Separator>
 
           <ListItem onPress={() => this.deleteProfileConfirm()} last>

@@ -7,6 +7,7 @@ import qs from 'qs';
 import { auth } from '../../firebase';
 import Config from '../../config.json';
 import store from '../store/userStore';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const styles = StyleSheet.create({
   container: {
@@ -71,10 +72,29 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
         <Text>{'Where\'s My Money?'}</Text>
-        <Button title={'Sign in with Google'} onPress={this.login} />
+
+        <Icon.Button name="google" backgroundColor="#DD4B39" onPress={this.login}>
+          <Text style={{fontFamily: 'Arial', fontSize: 15, color: 'white'}}>Login with Google</Text>
+        </Icon.Button>
       </View>
     );
   }
 }
+
+
+
+
+// const myButton = (
+//   <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={this.loginWithFacebook}>
+//     Login with Facebook
+//   </Icon.Button>
+// );
+
+// const customTextButton = (
+//   <Icon.Button name="facebook" backgroundColor="#3b5998">
+//     <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
+//   </Icon.Button>
+// );
 
