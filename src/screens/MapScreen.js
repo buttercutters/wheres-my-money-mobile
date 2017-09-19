@@ -15,20 +15,48 @@ export default class MapScreen extends React.Component {
         { title: 'KFC', date: 'September 14', amount: 22.14, latitude: 37.782999, longitude: -122.418953 },
         { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573 },
       ],
-      initialRegion: {
-        latitude: 37.78825,
-        longitude: -122.4324,
+    };
+  }
+
+  componentDidMount() {
+    this.setState({
+      region: {
+        latitude: this.state.transactions[0].latitude,
+        longitude: this.state.transactions[0].longitude,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
-    };
+    });
   }
+
+  animateNext() {
+    this.setState({
+      region: {
+        latitude: this.state.transactions[1].latitude,
+        longitude: this.state.transactions[1].longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+    });
+  }
+
+  animatePrevious() {
+    this.setState({
+      region: {
+        latitude: this.state.transactions[0].latitude,
+        longitude: this.state.transactions[0].longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+    });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <MapView
           style={styles.map}
-          initialRegion={this.state.initialRegion}
+          region={this.state.region}
         >
           
           {this.state.transactions.map((transaction) => {
@@ -49,13 +77,13 @@ export default class MapScreen extends React.Component {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            onPress={() => console.log('previous')}
+            onPress={() => this.animatePrevious()}
             style={[styles.bubble, styles.button]}
           >
             <Text style={styles.buttonText}>-</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={() => () => console.log('next')}
+            onPress={() => this.animateNext()}
             style={[styles.bubble, styles.button]}
           >
             <Text style={styles.buttonText}>+</Text>
@@ -123,3 +151,9 @@ styles = StyleSheet.create({
 // <PriceMarker amount={22.14} />
 // </MapView.Marker>
 
+// initialRegion: {
+//   latitude: 37.78825,
+//   longitude: -122.4324,
+//   latitudeDelta: 0.0922,
+//   longitudeDelta: 0.0421,
+// },
