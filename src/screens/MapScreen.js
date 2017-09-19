@@ -2,18 +2,22 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MapView } from 'expo';
 import PriceMarker from '../components/PriceMarker';
-import store from '../store/userStore';
 
 let styles;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = 0.0421;
+
 
 export default class MapScreen extends React.Component {
 
   constructor() {
     super();
     this.state = {
+      current: 0,
       transactions: [
         { title: 'KFC', date: 'September 14', amount: 22.14, latitude: 37.782999, longitude: -122.418953, key: 0 },
-        { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573, key: 1 },
+        { title: 'Burger King', date: 'September 16', amount: 12.00, latitude: 23.764687, longitude: 90.389686, key: 1 },
+        { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573, key: 2 },
       ],
     };
     this.animateNext = this.animateNext.bind(this);
@@ -22,10 +26,10 @@ export default class MapScreen extends React.Component {
   componentDidMount() {
     this.setState({
       region: {
-        latitude: this.state.transactions[0].latitude,
-        longitude: this.state.transactions[0].longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitude: this.state.transactions[this.state.current].latitude,
+        longitude: this.state.transactions[this.state.current].longitude,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
       },
     });
   }
@@ -35,12 +39,32 @@ export default class MapScreen extends React.Component {
   }
 
   animateNext() {
-    this.map.animateToCoordinate({ latitude: 37.783668, longitude: -122.432573 });
+    let nextCurrent;
+    if (this.state.current === this.state.transactions.length - 1) {
+      nextCurrent = 0;
+    } else {
+      nextCurrent = this.state.current + 1;
+    }
+    this.setState({ current: nextCurrent });
+    this.map.animateToCoordinate({
+      latitude: this.state.transactions[this.state.current].latitude,
+      longitude: this.state.transactions[this.state.current].longitude,
+    });
   }
 
-  // animatePrevious() {
-
-  // }
+  animatePrevious() {
+    let previousCurrent;
+    if (this.state.current === 0) {
+      previousCurrent = this.state.transactions.length - 1;
+    } else {
+      previousCurrent = this.state.current - 1;
+    }
+    this.setState({ current: previousCurrent });
+    this.map.animateToCoordinate({
+      latitude: this.state.transactions[this.state.current].latitude,
+      longitude: this.state.transactions[this.state.current].longitude,
+    });
+  }
 
   render() {
     return (
@@ -124,30 +148,3 @@ styles = StyleSheet.create({
   },
 });
 
-// co-ordinates for ez copy pasta
-
-// dhaka
-// 23.777176
-// 90.399452
-
-// SF
-// 37.78825
-// -122.4324
-
-// <MapView.Marker
-// coordinate={{
-//   latitude: 37.782999,
-//   longitude: -122.418953,
-// }}
-// title={'KFC'}
-// description={'September 14'}
-// >
-// <PriceMarker amount={22.14} />
-// </MapView.Marker>
-
-// initialRegion: {
-//   latitude: 37.78825,
-//   longitude: -122.4324,
-//   latitudeDelta: 0.0922,
-//   longitudeDelta: 0.0421,
-// },
