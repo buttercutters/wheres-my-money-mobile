@@ -15,9 +15,9 @@ export default class MapScreen extends React.Component {
     this.state = {
       current: 0,
       transactions: [
-        { title: 'KFC', date: 'September 14', amount: 22.14, latitude: 37.782999, longitude: -122.418953, key: 0 },
-        { title: 'Burger King', date: 'September 16', amount: 12.00, latitude: 23.764687, longitude: 90.389686, key: 1 },
-        { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573, key: 2 },
+        { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573, key: 0 },
+        { title: 'KFC', date: 'September 16', amount: 22.14, latitude: 37.782999, longitude: -122.418953, key: 1 },
+        { title: 'Burger King', date: 'September 12', amount: 12.00, latitude: 23.764687, longitude: 90.389686, key: 2 },
       ],
     };
     this.animateNext = this.animateNext.bind(this);
@@ -45,10 +45,11 @@ export default class MapScreen extends React.Component {
     } else {
       nextCurrent = this.state.current + 1;
     }
-    this.setState({ current: nextCurrent });
-    this.map.animateToCoordinate({
-      latitude: this.state.transactions[this.state.current].latitude,
-      longitude: this.state.transactions[this.state.current].longitude,
+    this.setState({ current: nextCurrent }, () => {
+      this.map.animateToCoordinate({
+        latitude: this.state.transactions[this.state.current].latitude,
+        longitude: this.state.transactions[this.state.current].longitude,
+      });
     });
   }
 
@@ -59,10 +60,11 @@ export default class MapScreen extends React.Component {
     } else {
       previousCurrent = this.state.current - 1;
     }
-    this.setState({ current: previousCurrent });
-    this.map.animateToCoordinate({
-      latitude: this.state.transactions[this.state.current].latitude,
-      longitude: this.state.transactions[this.state.current].longitude,
+    this.setState({ current: previousCurrent }, () => {
+      this.map.animateToCoordinate({
+        latitude: this.state.transactions[this.state.current].latitude,
+        longitude: this.state.transactions[this.state.current].longitude,
+      });
     });
   }
 
@@ -95,16 +97,16 @@ export default class MapScreen extends React.Component {
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            onPress={() => this.animatePrevious()}
-            style={[styles.bubble, styles.button]}
-          >
-            <Text style={styles.buttonText}>-</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
             onPress={() => this.animateNext()}
             style={[styles.bubble, styles.button]}
           >
-            <Text style={styles.buttonText}>+</Text>
+            <Text style={styles.buttonText}>Previous</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.animatePrevious()}
+            style={[styles.bubble, styles.button]}
+          >
+            <Text style={styles.buttonText}>Next</Text>
           </TouchableOpacity>
         </View>
       </View>
