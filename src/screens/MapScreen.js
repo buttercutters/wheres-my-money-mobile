@@ -12,10 +12,11 @@ export default class MapScreen extends React.Component {
     super();
     this.state = {
       transactions: [
-        { title: 'KFC', date: 'September 14', amount: 22.14, latitude: 37.782999, longitude: -122.418953 },
-        { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573 },
+        { title: 'KFC', date: 'September 14', amount: 22.14, latitude: 37.782999, longitude: -122.418953, key: 0 },
+        { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573, key: 1 },
       ],
     };
+    this.animateNext = this.animateNext.bind(this);
   }
 
   componentDidMount() {
@@ -29,34 +30,26 @@ export default class MapScreen extends React.Component {
     });
   }
 
-  animateNext() {
-    this.setState({
-      region: {
-        latitude: this.state.transactions[1].latitude,
-        longitude: this.state.transactions[1].longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      },
-    });
+  onRegionChange(region) {
+    this.setState({ region });
   }
 
-  animatePrevious() {
-    this.setState({
-      region: {
-        latitude: this.state.transactions[0].latitude,
-        longitude: this.state.transactions[0].longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      },
-    });
+  animateNext() {
+    this.map.animateToCoordinate({ latitude: 37.783668, longitude: -122.432573 });
   }
+
+  // animatePrevious() {
+
+  // }
 
   render() {
     return (
       <View style={styles.container}>
         <MapView
+          ref={(ref) => { this.map = ref; }}
           style={styles.map}
-          region={this.state.region}
+          initialRegion={this.state.region}
+          onRegionChange={region => this.onRegionChange(region)}
         >
           
           {this.state.transactions.map((transaction) => {
@@ -68,8 +61,9 @@ export default class MapScreen extends React.Component {
                 }}
                 title={transaction.title}
                 description={transaction.date}
+                key={transaction.key}
               >
-                <PriceMarker amount={transaction.amount} />
+                <PriceMarker amount={transaction.amount} key={transaction.key} />
               </MapView.Marker>
             );
           })}
