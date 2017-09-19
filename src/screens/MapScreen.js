@@ -112,17 +112,6 @@ styles = StyleSheet.create({
 // 37.78825
 // -122.4324
 
-{/* <MapView.Marker
-coordinate={{
-  latitude: 37.783668,
-  longitude: -122.432573,
-}}
-title={'Boba Guys'}
-description={'September 3'}
->
-<PriceMarker amount={9.00} />
-</MapView.Marker> */}
-
 // <MapView.Marker
 // coordinate={{
 //   latitude: 37.782999,
