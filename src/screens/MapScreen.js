@@ -17,7 +17,9 @@ export default class MapScreen extends React.Component {
       transactions: [
         { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573, key: 0 },
         { title: 'KFC', date: 'September 16', amount: 22.14, latitude: 37.782999, longitude: -122.418953, key: 1 },
-        { title: 'Burger King', date: 'September 12', amount: 12.00, latitude: 23.764687, longitude: 90.389686, key: 2 },
+        { title: 'Guitar Center', date: 'September 15', amount: 249.99, latitude: 41.930144, longitude: -87.648585, key: 2 },
+        { title: 'Macy\'s', date: 'September 14', amount: 79.99, latitude: 40.7507815, longitude: -73.9889593, key: 3 },
+        { title: 'Burger King', date: 'September 12', amount: 12.00, latitude: 23.801551, longitude: 90.413159, key: 4 },
       ],
     };
     this.animateNext = this.animateNext.bind(this);
