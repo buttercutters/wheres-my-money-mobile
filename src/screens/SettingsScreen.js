@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertIOS } from 'react-native';
+import {AlertIOS} from 'react-native';
 import {
   Container,
   Content,
@@ -11,7 +11,7 @@ import {
   Switch,
   Icon
 } from 'native-base';
-import { StackNavigator } from 'react-navigation';
+import {StackNavigator} from 'react-navigation';
 import axios from 'axios';
 import qs from 'qs';
 import store from '../store/userStore';
@@ -22,29 +22,53 @@ export default class SettingsScreen extends React.Component {
     super();
     this.state = {
       test: false,
-      uniqueUserId: store.getState().uniqueUserId,
+      uniqueUserId: store
+        .getState()
+        .uniqueUserId,
+
+      randomGeneratorList: [
+        'Chase',
+        'Bank of America',
+        'Wells Fargo',
+        'Citi Bank',
+        'U.S. Bank',
+        'Capital One'
+      ],
+
+      linkedAccounts: [
+        {
+          name: 'Chase',
+          tokenId: '31337'
+        }, {
+          name: 'Bank of America',
+          tokenId: '31337'
+        }
+      ]
     };
-    this.deleteProfile = this.deleteProfile.bind(this);
-    this.logout = this.logout.bind(this);
+    this.deleteProfile = this
+      .deleteProfile
+      .bind(this);
+    this.logout = this
+      .logout
+      .bind(this);
   }
 
-  
   logout() {
-    store.dispatch({
-      type: 'LOG_OUT',
-    });
+    store.dispatch({type: 'LOG_OUT'});
     this.navigateToApp();
   }
 
   deleteProfileConfirm() {
-    AlertIOS.alert(
-      'Delete profile',
-      'Do you wish to delete the profile?',
-      [
-        { text: 'Okay', onPress: () => this.deleteProfile(), style: 'cancel' },
-        { text: 'Cancel', style: 'cancel' },
-      ],
-    );
+    AlertIOS.alert('Delete profile', 'Do you wish to delete the profile?', [
+      {
+        text: 'Okay',
+        onPress: () => this.deleteProfile(),
+        style: 'cancel'
+      }, {
+        text: 'Cancel',
+        style: 'cancel'
+      }
+    ],);
   }
 
   deleteProfile() {
@@ -52,27 +76,34 @@ export default class SettingsScreen extends React.Component {
     console.log(uniqueUserId);
     const config = {
       url: 'http://localhost:5000/testproject-6177f/us-central1/deleteUserProfile',
-      payload: qs.stringify({ uniqueUserId }),
+      payload: qs.stringify({uniqueUserId})
     };
-    axios.post(config.url, config.payload)
+    axios
+      .post(config.url, config.payload)
       .then(() => {
-        AlertIOS.alert(
-          'Profile Deleted',
-          'Your Where\'s my Money Google Calender and events have been deleted',
-          [
-            { text: 'Okay', onPress: () => this.navigateToApp(), style: 'cancel' },
-          ],
-        );
+        AlertIOS.alert('Profile Deleted', 'Your Where\'s my Money Google Calender and events have been deleted', [
+          {
+            text: 'Okay',
+            onPress: () => this.navigateToApp(),
+            style: 'cancel'
+          }
+        ],);
       })
       .catch(error => console.log(error));
   }
 
   navigateToPlaid() {
-    this.props.navigation.navigate('Plaid');
+    this
+      .props
+      .navigation
+      .navigate('Plaid');
   }
 
   navigateToApp = () => {
-    this.props.navigation.navigate('App');
+    this
+      .props
+      .navigation
+      .navigate('App');
   }
 
   render() {
@@ -82,40 +113,64 @@ export default class SettingsScreen extends React.Component {
           <Separator bordered>
             <Text>Linked Accounts</Text>
           </Separator>
-          <ListItem last>
-            <Body>
-              <Text>Chase</Text>
-            </Body>
-            <Right>
-              <Switch value={this.state.test = !(!true)} />
-            </Right>
-          </ListItem>
 
-          <Separator bordered>
-          </Separator>
+          {/* -======= Bank List =======- */}
+
+          {this
+            .state
+            .linkedAccounts
+            .map((account) => {
+              return (
+                <ListItem last>
+                  <Body>
+                    <Text>{account.name}</Text>
+                  </Body>
+                  <Right>
+                    <Switch value={this.state.test = !(!true)}/>
+                  </Right>
+                </ListItem>
+              );
+            })}
+
+
+          {/* =========================== */}
+
+          <Separator bordered></Separator>
 
           <ListItem last>
             <Body>
               <Text>Link new account</Text>
             </Body>
             <Right>
-              <Icon onPress={this.navigateToPlaid.bind(this)} name="add" />
+              <Icon
+                onPress={this
+                .navigateToPlaid
+                .bind(this)}
+                name="add"/>
             </Right>
           </ListItem>
-          
+
           <Separator bordered>
             <Text>WWM Profile Management.</Text>
           </Separator>
 
           <ListItem onPress={() => this.deleteProfileConfirm()} last>
             <Body>
-              <Text style={{ color: 'red', textAlign: 'center' }}>Delete Your Where's My Money Profile</Text>
+              <Text
+                style={{
+                color: 'red',
+                textAlign: 'center'
+              }}>Delete Your Where's My Money Profile</Text>
             </Body>
           </ListItem>
 
           <ListItem onPress={() => this.logout()} last>
             <Body>
-              <Text style={{ color: 'red', textAlign: 'center' }}>Logout</Text>
+              <Text
+                style={{
+                color: 'red',
+                textAlign: 'center'
+              }}>Logout</Text>
             </Body>
           </ListItem>
 
