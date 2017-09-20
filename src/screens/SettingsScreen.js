@@ -39,7 +39,8 @@ export default class SettingsScreen extends React.Component {
         {
           name: 'Chase',
           tokenId: '31337'
-        }, {
+        },
+        {
           name: 'Bank of America',
           tokenId: '31337'
         }
@@ -92,6 +93,7 @@ export default class SettingsScreen extends React.Component {
       .catch(error => console.log(error));
   }
 
+  // Navigation =========
   navigateToPlaid() {
     this
       .props
@@ -105,6 +107,7 @@ export default class SettingsScreen extends React.Component {
       .navigation
       .navigate('App');
   }
+  // Navigation =========
 
   render() {
     return (
@@ -115,23 +118,21 @@ export default class SettingsScreen extends React.Component {
           </Separator>
 
           {/* -======= Bank List =======- */}
-
           {this
             .state
             .linkedAccounts
             .map((account) => {
               return (
-                <ListItem last>
+                <ListItem last key={account.name}>
                   <Body>
                     <Text>{account.name}</Text>
                   </Body>
                   <Right>
-                    <Switch value={this.state.test = !(!true)}/>
+                    <Switch />
                   </Right>
                 </ListItem>
               );
             })}
-
 
           {/* =========================== */}
 
