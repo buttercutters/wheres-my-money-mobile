@@ -2,6 +2,5 @@ node_modules/
 .expo/
 npm-debug.*
 config.json
-.eslintrc.json
 .vscode
 native-base-theme/
