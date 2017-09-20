@@ -23,13 +23,38 @@ export default class SettingsScreen extends React.Component {
       switchState: true,
       uniqueUserId: store.getState().uniqueUserId,
       linkedAccounts: [
-        { name: 'Chase', tokenId: '31337', active: true },
-        { name: 'Bank of America', tokenId: '31337', active: true },
+        { name: 'Chase', active: true },
       ],
     };
 
     this.deleteProfile = this.deleteProfile.bind(this);
     this.logout = this.logout.bind(this);
+  }
+
+  componentDidMount() {
+    const config = {
+      url: 'http://localhost:5000/testproject-6177f/us-central1/getAllUserInstitutions',
+      payload: qs.stringify({
+        uniqueUserId: this.state.uniqueUserId,
+      }),
+    };
+    setTimeout(() => {
+      axios.post(config.url, config.payload)
+      .then((response) => {
+        let accounts;
+        accounts = Object.keys(response.data);
+        accounts = accounts.filter(bank => bank !== 'null');
+        accounts = accounts.map((account) => {
+          return { name: account, active: true };
+        });
+        console.log(50, accounts);
+        this.setState({
+          linkedAccounts: accounts,
+        });
+      })
+      .catch(error => console.log('44', error));
+    },
+    10000);
   }
 
   handleSwitchValueChange(index) {
@@ -75,7 +100,6 @@ export default class SettingsScreen extends React.Component {
 
   deleteProfile() {
     const uniqueUserId = this.state.uniqueUserId;
-    console.log(uniqueUserId);
     const config = {
       url: 'http://localhost:5000/testproject-6177f/us-central1/deleteUserProfile',
       payload: qs.stringify({ uniqueUserId }),
