@@ -38,23 +38,20 @@ export default class SettingsScreen extends React.Component {
         uniqueUserId: this.state.uniqueUserId,
       }),
     };
-    setTimeout(() => {
-      axios.post(config.url, config.payload)
-      .then((response) => {
-        let accounts;
-        accounts = Object.keys(response.data);
-        accounts = accounts.filter(bank => bank !== 'null');
-        accounts = accounts.map((account) => {
-          return { name: account, active: true };
-        });
-        console.log(50, accounts);
-        this.setState({
-          linkedAccounts: accounts,
-        });
-      })
-      .catch(error => console.log('44', error));
-    },
-    10000);
+    axios.post(config.url, config.payload)
+    .then((response) => {
+      let accounts;
+      accounts = Object.keys(response.data);
+      accounts = accounts.filter(bank => bank !== 'null');
+      accounts = accounts.map((account) => {
+        return { name: account, active: true };
+      });
+      console.log(50, accounts);
+      this.setState({
+        linkedAccounts: accounts,
+      });
+    })
+    .catch(error => console.log(error));
   }
 
   handleSwitchValueChange(index) {
@@ -65,7 +62,7 @@ export default class SettingsScreen extends React.Component {
 
   logout() {
     store.dispatch({ type: 'LOG_OUT' });
-    this.navigateToApp();
+    this.navigateToSignIn();
   }
 
   deleteInstitutionConfirmation(index) {
@@ -110,7 +107,7 @@ export default class SettingsScreen extends React.Component {
         AlertIOS.alert('Profile Deleted', 'Your Where\'s my Money Google Calender and events have been deleted', [
           {
             text: 'Okay',
-            onPress: () => this.navigateToApp(),
+            onPress: () => this.navigateToSignIn(),
             style: 'cancel',
           },
         ]);
@@ -124,11 +121,11 @@ export default class SettingsScreen extends React.Component {
       .props.navigation.navigate('Plaid');
   }
 
-  navigateToApp = () => {
+  navigateToSignIn = () => {
     this
       .props
       .navigation
-      .navigate('App');
+      .navigate('SignIn');
   }
   // Navigation =========
 
@@ -143,12 +140,12 @@ export default class SettingsScreen extends React.Component {
           {/* -======= Bank List =======- */}
           {this.state.linkedAccounts.map((account, index) => {
             return (
-              <ListItem last key={ index }>
+              <ListItem last key={index}>
                 <Body>
                   <Text>{account.name}</Text>
                 </Body>
                 <Right>
-                  <Switch 
+                  <Switch
                     value={this.state.linkedAccounts[index].active}
                     onValueChange={() => this.deleteInstitutionConfirmation(index)}
                   />
