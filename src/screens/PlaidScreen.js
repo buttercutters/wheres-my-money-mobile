@@ -74,7 +74,7 @@ export default class PlaidScreen extends React.Component {
       <PlaidAuthenticator
         onMessage={this.onMessage}
         publicKey={Config.REACT_APP_PLAID_PUBLIC_KEY}
-        webhook="http://5f20d52b.ngrok.io/testproject-6177f/us-central1/plaidWebHook"
+        webhook="http://0e933652.ngrok.io/testproject-6177f/us-central1/plaidWebHook"
         env="sandbox"
         product="auth,transactions"
         clientName="Wheres My Money"
