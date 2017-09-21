@@ -1,7 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { AlertIOS, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { MapView } from 'expo';
 import PriceMarker from '../components/PriceMarker';
+import store from '../store/userStore';
 
 let styles;
 const LATITUDE_DELTA = 0.0922;
@@ -23,6 +24,15 @@ export default class MapScreen extends React.Component {
       ],
     };
     this.animateNext = this.animateNext.bind(this);
+  }
+
+  componentWillMount() {
+    if (store.getState().firstTimeUser) {
+      AlertIOS.alert(
+        'Account linked!',
+        'A Google Calendar has automagically been generated for you!',
+      );
+    }
   }
 
   componentDidMount() {
