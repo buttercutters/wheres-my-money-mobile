@@ -4,13 +4,18 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import MapScreen from './MapScreen';
 import SettingsScreen from './SettingsScreen';
-import DashboardScreen from './DashboardScreen';
 import Colors from '../constants/Colors';
+
+export class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Home',
+    headerLeft: null,
+  };
+}
 
 export default TabNavigator(
   {
     Map: { screen: MapScreen },
-    Dashboard: { screen: DashboardScreen },
     Settings: { screen: SettingsScreen },
   },
   {
@@ -49,4 +54,5 @@ export default TabNavigator(
     animationEnabled: true,
     swipeEnabled: true,
   },
+  HomeScreen,
 );
