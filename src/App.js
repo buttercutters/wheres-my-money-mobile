@@ -31,6 +31,9 @@ export class App extends React.Component {
 export default StackNavigator({
   SignIn: {
     screen: SignInScreen,
+    navigationOptions: {
+      headerTintColor: '#007AFF',
+    },
   },
   Plaid: {
     screen: PlaidScreen,
@@ -39,7 +42,7 @@ export default StackNavigator({
     screen: HomeScreen,
     navigationOptions: {
       headerLeft: null,
-      headerTitle: 'Home',
+      headerTitle: 'Where\'s My Money',
     },
   },
 }, App);
