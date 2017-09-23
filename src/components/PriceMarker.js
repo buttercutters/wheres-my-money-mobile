@@ -5,34 +5,6 @@ import {
   Text,
 } from 'react-native';
 
-const propTypes = {
-  amount: PropTypes.number.isRequired,
-  fontSize: PropTypes.number,
-};
-
-const defaultProps = {
-  fontSize: 13,
-};
-
-class PriceMarker extends React.Component {
-  render() {
-    const { fontSize, amount } = this.props;
-    return (
-      <View style={styles.container}>
-        <View style={styles.bubble}>
-          <Text style={styles.dollar}>$</Text>
-          <Text style={[styles.amount, { fontSize }]}>{amount}</Text>
-        </View>
-        <View style={styles.arrowBorder} />
-        <View style={styles.arrow} />
-      </View>
-    );
-  }
-}
-
-PriceMarker.propTypes = propTypes;
-PriceMarker.defaultProps = defaultProps;
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
@@ -73,5 +45,35 @@ const styles = StyleSheet.create({
     marginTop: -0.5,
   },
 });
+
+// #007AFF
+
+const propTypes = {
+  amount: PropTypes.number.isRequired,
+  fontSize: PropTypes.number,
+};
+
+const defaultProps = {
+  fontSize: 13,
+};
+
+class PriceMarker extends React.Component {
+  render() {
+    const { fontSize, amount } = this.props;
+    return (
+      <View style={styles.container}>
+        <View style={styles.bubble}>
+          <Text style={styles.dollar}>$</Text>
+          <Text style={[styles.amount, { fontSize }]}>{amount}</Text>
+        </View>
+        <View style={styles.arrowBorder} />
+        <View style={styles.arrow} />
+      </View>
+    );
+  }
+}
+
+PriceMarker.propTypes = propTypes;
+PriceMarker.defaultProps = defaultProps;
 
 module.exports = PriceMarker;
