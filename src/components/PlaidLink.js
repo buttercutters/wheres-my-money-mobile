@@ -64,10 +64,10 @@ PlaidAuthenticator.defaultProps = {
   style: PropTypes.object
 }
 
-PlaidAuthenticator.defaultProps = {
-  clientName: 'CatalinMiron',
-  webhook: 'http://batman.codes',
-  style: {}
-};
+// PlaidAuthenticator.defaultProps = {
+//   clientName: 'CatalinMiron',
+//   webhook: 'http://batman.codes',
+//   style: {}
+// };
 
 export default PlaidAuthenticator;
