@@ -6,6 +6,7 @@ import qs from 'qs';
 import Config from '../../config.json';
 import store from '../store/userStore';
 import PlaidAuthenticator from '../components/PlaidLink';
+import Spinner from '../components/Spinner';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +21,6 @@ export default class PlaidScreen extends React.Component {
   // eslint-disable-next-line
   static navigationOptions = {
     title: 'Link Account',
-    headerLeft: null,
   };
   constructor() {
     super();
@@ -30,6 +30,7 @@ export default class PlaidScreen extends React.Component {
       data: {},
       linkButtonPressed: false,
       uniqueUserId: store.getState().uniqueUserId,
+      loading: false,
     };
     this.onMessage = this.onMessage.bind(this);
     this.exchangePublicToken = this.exchangePublicToken.bind(this);
@@ -39,16 +40,17 @@ export default class PlaidScreen extends React.Component {
     if (data.action === 'plaid_link-undefined::connected') {
       this.setState(
         { linkButtonPressed: false },
-        () => this.exchangePublicToken(data.metadata.public_token),
+        () => this.exchangePublicToken(data.metadata.public_token, data.metadata.institution),
       );
     }
   }
 
-  exchangePublicToken(publicToken) {
+  exchangePublicToken(publicToken, institution) {
     const config = {
       url: 'http://localhost:5000/testproject-6177f/us-central1/exchangePublicToken',
       payload: qs.stringify({
         publicToken,
+        institution,
         uniqueUserId: this.state.uniqueUserId,
       }),
     };
@@ -62,9 +64,14 @@ export default class PlaidScreen extends React.Component {
   }
 
   renderLinkButton() {
+    if (this.state.loading) {
+      return (
+        <Spinner message="Linking your bank account" />
+      );
+    }
     return (
       <View style={styles.container}>
-        <Button title={'Link Your Bank Account'} onPress={() => this.setState({ linkButtonPressed: true })} />
+        <Button title={'Link Your Bank Account'} onPress={() => this.setState({ linkButtonPressed: true, loading: true })} />
       </View>
     );
   }
@@ -74,9 +81,9 @@ export default class PlaidScreen extends React.Component {
       <PlaidAuthenticator
         onMessage={this.onMessage}
         publicKey={Config.REACT_APP_PLAID_PUBLIC_KEY}
-        webhook="http://0e933652.ngrok.io/testproject-6177f/us-central1/plaidWebHook"
+        webhook={Config.REACT_APP_PLAID_WEBHOOK}
         env="sandbox"
-        product="auth,transactions"
+        product="transactions"
         clientName="Wheres My Money"
       />
     );
