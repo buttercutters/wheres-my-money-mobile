@@ -5,6 +5,7 @@ import {
   Container,
   Content,
   Icon,
+  List,
   ListItem,
   Right,
   Separator,
@@ -134,8 +135,10 @@ export default class SettingsScreen extends React.Component {
       <Container>
         <Content>
           <Separator bordered>
-            <Text>Linked Accounts</Text>
+            <Text>Linked Banks</Text>
           </Separator>
+
+          <List>
 
           {/* -======= Bank List =======- */}
           {this.state.linkedAccounts.map((account, index) => {
@@ -154,13 +157,15 @@ export default class SettingsScreen extends React.Component {
             );
           })}
 
-          {/* =========================== */}
-
-          <Separator bordered />
-
           <ListItem last>
             <Body>
-              <Text>Link New Bank</Text>
+              <Text
+                style={{
+                  color: 'royalblue',
+                }}
+              >
+                Link New Bank
+              </Text>
             </Body>
             <Right>
               <Icon
@@ -170,9 +175,29 @@ export default class SettingsScreen extends React.Component {
             </Right>
           </ListItem>
 
+          </List>
+
           <Separator bordered>
-            <Text>WWM Profile Management.</Text>
+            <Text>Options</Text>
           </Separator>
+
+          <ListItem onPress={() => this.logout()} last>
+            <Body>
+              <Text
+                style={{
+                  color: 'royalblue',
+                  textAlign: 'center',
+                }}
+              >
+                Logout
+              </Text>
+            </Body>
+          </ListItem>
+
+          <Separator bordered>
+            <Text>Delete Profile</Text>
+          </Separator>
+
 
           <ListItem onPress={() => this.deleteProfileConfirm()} last>
             <Body>
@@ -183,19 +208,6 @@ export default class SettingsScreen extends React.Component {
                 }}
               >
                 Delete Your Where's My Money Profile
-              </Text>
-            </Body>
-          </ListItem>
-
-          <ListItem onPress={() => this.logout()} last>
-            <Body>
-              <Text
-                style={{
-                  color: 'red',
-                  textAlign: 'center',
-                }}
-              >
-                Logout
               </Text>
             </Body>
           </ListItem>
