@@ -16,11 +16,14 @@ export default class MapScreen extends React.Component {
     this.state = {
       current: 0,
       transactions: [
-        { title: 'Boba Guys', date: 'September 18', amount: 9.00, latitude: 37.783668, longitude: -122.432573, key: 0 },
-        { title: 'KFC', date: 'September 16', amount: 22.14, latitude: 37.782999, longitude: -122.418953, key: 1 },
-        { title: 'Guitar Center', date: 'September 15', amount: 249.99, latitude: 41.930144, longitude: -87.648585, key: 2 },
-        { title: 'Macy\'s', date: 'September 14', amount: 79.99, latitude: 40.7507815, longitude: -73.9889593, key: 3 },
-        { title: 'Burger King', date: 'September 12', amount: 12.00, latitude: 23.801551, longitude: 90.413159, key: 4 },
+        { title: 'Boba Guys', date: 'September 22', amount: 9, latitude: 37.783668, longitude: -122.432573, key: 0 },
+        { title: 'KFC', date: 'September 21', amount: 22, latitude: 37.782999, longitude: -122.418953, key: 1 },
+        { title: 'Starbucks', date: 'September 21', amount: 4, latitude: 37.777295, longitude: -122.417210, key: 2 },
+        { title: 'Guitar Center', date: 'September 18', amount: 250, latitude: 41.930144, longitude: -87.648585, key: 3 },
+        { title: 'Pot Belly', date: 'September 17', amount: 12, latitude: 41.885391, longitude: -87.628444, key: 4 },
+        { title: 'Macy\'s', date: 'September 14', amount: 140, latitude: 40.7507815, longitude: -73.9889593, key: 5 },
+        { title: 'Franklin Barbeque', date: 'September 12', amount: 35, latitude: 30.270119, longitude: -97.731273, key: 6 },
+        { title: 'Pi Pizza', date: 'September 12', amount: 65, latitude: 38.655013, longitude: -90.297749, key: 7 },
       ],
     };
     this.animateNext = this.animateNext.bind(this);
