@@ -9,8 +9,3 @@ it('renders without crashing', () => {
   expect(rendered).toBeTruthy();
 });
 
-describe('Addition', () => {
-  it('can add numbers', () => {
-    expect(2 + 2).toBe(4);
-  });
-});
