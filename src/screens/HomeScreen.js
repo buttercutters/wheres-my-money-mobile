@@ -15,7 +15,7 @@ export class HomeScreen extends React.Component {
 
 export default TabNavigator(
   {
-    Map: { screen: MapScreen },
+    // Map: { screen: MapScreen },
     Settings: { screen: SettingsScreen },
   },
   {
