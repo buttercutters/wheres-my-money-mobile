@@ -4,6 +4,7 @@ const defaultState = {
   uniqueUserId: null,
   dailySpending: 25,
   firstTimeUser: false,
+  institutions: [],
 };
 
 function userStore(state = defaultState, action) {
@@ -17,6 +18,10 @@ function userStore(state = defaultState, action) {
       return Object.assign({}, state, {
         uniqueUserId: null,
         firstTimeUser: false,
+      });
+    case 'LINK_BANK':
+      return Object.assign({}, state, {
+        institutions: state.institutions.concat([{ name: action.institution, active: true }]),
       });
     default:
       return state;
