@@ -23,9 +23,7 @@ export default class SettingsScreen extends React.Component {
     this.state = {
       switchState: true,
       uniqueUserId: store.getState().uniqueUserId,
-      linkedAccounts: [
-        { name: 'Chase', active: true },
-      ],
+      linkedAccounts: store.getState().institutions,
     };
 
     this.deleteProfile = this.deleteProfile.bind(this);
