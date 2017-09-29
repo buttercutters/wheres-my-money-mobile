@@ -42,6 +42,10 @@ export default class PlaidScreen extends React.Component {
         { linkButtonPressed: false },
         () => this.exchangePublicToken(data.metadata.public_token, data.metadata.institution),
       );
+      store.dispatch({
+        type: 'LINK_BANK',
+        institution: data.metadata.institution.name,
+      });
     }
   }
 
