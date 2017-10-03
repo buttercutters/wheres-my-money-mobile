@@ -17,7 +17,7 @@ Link to video demo: https://goo.gl/h5V1dH
 1. Sign in with your Google Account.
 2. Link your bank account to provide access to transaction data.
 
-![Alt text](/screenshots/Plaid.png?raw=true "Link Bank")
+![Alt text](/screenshots/Plaid.png "Link Bank")
 
 3. Your Google Calendar is automatically populated with your spending by day.
 
