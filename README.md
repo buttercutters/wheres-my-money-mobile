@@ -10,6 +10,16 @@ The client is built using react native and redux. The backend is powered by Goog
 
 Plaid allows secure fetching of financial transactions, which we then visualize on Google Calendar by integrating with the Calendar API.
 
+## Usage
+
+Link to video demo: https://goo.gl/h5V1dH
+
+1. Sign in with your Google Account.
+2. Link you bank account to provide transaction data.
+3. Your Google Calendar is automatically populated with your spending by day.
+
+
+
 
 
 
