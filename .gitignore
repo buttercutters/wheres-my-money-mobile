@@ -4,3 +4,4 @@ npm-debug.*
 config.json
 .vscode
 native-base-theme/
+.DS_Store
