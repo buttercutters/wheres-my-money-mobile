@@ -21,7 +21,7 @@ Link to video demo: https://goo.gl/h5V1dH
 
 3. Your Google Calendar is automatically populated with your spending by day.
 
-<img src="screenshots/calendarMonthView.png" width="1000">
+
 
 
 
