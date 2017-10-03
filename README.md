@@ -32,7 +32,7 @@ Link to video demo: https://goo.gl/h5V1dH
 
 5. Use the settings tab to link additional bank accounts, or remove linked accounts.
 
-<img src="screenshots/settings.png" width="250">
+<img src="screenshots/settingsView.png" width="250">
 
 
 
