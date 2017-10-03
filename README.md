@@ -25,7 +25,7 @@ Link to video demo: https://goo.gl/h5V1dH
 
 4. Click on an event to view spending details for that day/
 
-<img src="screenshots/calendarEventDescription.png">
+<img src="screenshots/calendarEventDescription.png" width="300">
 
 
 
