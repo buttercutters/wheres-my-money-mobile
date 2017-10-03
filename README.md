@@ -15,6 +15,9 @@ Plaid allows secure fetching of financial transactions, which we then visualize 
 Link to video demo: https://goo.gl/h5V1dH
 
 1. Sign in with your Google Account.
+
+<img src="screenshots/signIn.png" width="250">
+
 2. Link your bank account to provide access to transaction data.
 
 <img src="screenshots/linkBank.png" width="250">
@@ -26,6 +29,10 @@ Link to video demo: https://goo.gl/h5V1dH
 4. Click on an event to view spending details for that day/
 
 <img src="screenshots/calendarEventDescription.png" width="300">
+
+5. Use the settings tab to link additional bank accounts
+
+<img src="screenshots/settings.png" width="250">
 
 
 
