@@ -26,11 +26,11 @@ Link to video demo: https://goo.gl/h5V1dH
 
 <img src="screenshots/calendarMonthView.png" width="600">
 
-4. Click on an event to view spending details for that day/
+4. Click on an event to view spending details for that day.
 
 <img src="screenshots/calendarEventDescription.png" width="300">
 
-5. Use the settings tab to link additional bank accounts
+5. Use the settings tab to link additional bank accounts, or remove linked accounts.
 
 <img src="screenshots/settings.png" width="250">
 
