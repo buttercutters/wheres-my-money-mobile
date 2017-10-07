@@ -61,8 +61,8 @@ PlaidAuthenticator.defaultProps = {
   product: PropTypes.string.isRequired,
   clientName: PropTypes.string,
   webhook: PropTypes.string,
-  style: PropTypes.object
-}
+  // style: PropTypes.object
+};
 
 // PlaidAuthenticator.defaultProps = {
 //   clientName: 'CatalinMiron',
