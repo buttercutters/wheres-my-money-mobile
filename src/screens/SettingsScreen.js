@@ -24,33 +24,11 @@ export default class SettingsScreen extends React.Component {
       switchState: true,
       uniqueUserId: store.getState().uniqueUserId,
       linkedAccounts: store.getState().institutions,
+      userIdToken: store.getState().userIdToken,
     };
 
     this.deleteProfile = this.deleteProfile.bind(this);
     this.logout = this.logout.bind(this);
-  }
-
-  componentDidMount() {
-    const config = {
-      url: 'http://localhost:5000/testproject-6177f/us-central1/getAllUserInstitutions',
-      payload: qs.stringify({
-        uniqueUserId: this.state.uniqueUserId,
-      }),
-    };
-    axios.post(config.url, config.payload)
-    .then((response) => {
-      let accounts;
-      accounts = Object.keys(response.data);
-      accounts = accounts.filter(bank => bank !== 'null');
-      accounts = accounts.map((account) => {
-        return { name: account, active: true };
-      });
-      console.log(50, accounts);
-      this.setState({
-        linkedAccounts: accounts,
-      });
-    })
-    .catch(error => console.log(error));
   }
 
   handleSwitchValueChange(index) {
@@ -95,10 +73,10 @@ export default class SettingsScreen extends React.Component {
   }
 
   deleteProfile() {
-    const uniqueUserId = this.state.uniqueUserId;
+    const idToken = this.state.userIdToken;
     const config = {
       url: 'http://localhost:5000/testproject-6177f/us-central1/deleteUserProfile',
-      payload: qs.stringify({ uniqueUserId }),
+      payload: qs.stringify({ idToken }),
     };
     axios
       .post(config.url, config.payload)
@@ -133,7 +111,7 @@ export default class SettingsScreen extends React.Component {
       <Container>
         <Content>
           <Separator bordered>
-            <Text>Linked Banks</Text>
+            <Text>Your Linked Bank</Text>
           </Separator>
 
           <List>
@@ -155,7 +133,7 @@ export default class SettingsScreen extends React.Component {
             );
           })}
 
-          <ListItem last>
+          {/* <ListItem last>
             <Body>
               <Text
                 style={{
@@ -171,7 +149,7 @@ export default class SettingsScreen extends React.Component {
                 name="add"
               />
             </Right>
-          </ListItem>
+          </ListItem> */}
 
           </List>
 

@@ -5,6 +5,7 @@ const defaultState = {
   dailySpending: 25,
   firstTimeUser: false,
   institutions: [],
+  userIdToken: null,
 };
 
 function userStore(state = defaultState, action) {
@@ -13,6 +14,7 @@ function userStore(state = defaultState, action) {
       return Object.assign({}, state, {
         uniqueUserId: action.uniqueUserId,
         firstTimeUser: action.firstTimeUser,
+        userIdToken: action.userIdToken,
       });
     case 'LOG_OUT':
       return Object.assign({}, state, {

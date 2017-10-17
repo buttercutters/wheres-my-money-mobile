@@ -67,11 +67,12 @@ export default class App extends React.Component {
             // send idToken and accessToken for server-side authentication and Google calendar creation
             axios.post(config.url, config.payload)
               .then((response) => {
+                console.log(response.data);
                 if (response.data.uniqueUserId) {
-                  console.log('signin screen line 71: ', response.data.uniqueUserId);
                   store.dispatch({
                     type: 'LOG_IN',
                     uniqueUserId: response.data.uniqueUserId,
+                    userIdToken: idToken,
                   });
                   this.navigateToHome();
                 } else {
@@ -80,6 +81,7 @@ export default class App extends React.Component {
                     type: 'LOG_IN',
                     uniqueUserId: uid,
                     firstTimeUser: true,
+                    userIdToken: idToken,
                   });
                   this.navigateToPlaid();
                 }

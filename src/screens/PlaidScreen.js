@@ -31,6 +31,7 @@ export default class PlaidScreen extends React.Component {
       linkButtonPressed: false,
       uniqueUserId: store.getState().uniqueUserId,
       loading: false,
+      userIdToken: store.getState().userIdToken,
     };
     this.onMessage = this.onMessage.bind(this);
     this.exchangePublicToken = this.exchangePublicToken.bind(this);
@@ -56,6 +57,7 @@ export default class PlaidScreen extends React.Component {
         publicToken,
         institution,
         uniqueUserId: this.state.uniqueUserId,
+        idToken: this.state.userIdToken,
       }),
     };
     axios.post(config.url, config.payload)
