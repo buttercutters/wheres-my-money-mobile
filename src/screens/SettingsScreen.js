@@ -42,21 +42,6 @@ export default class SettingsScreen extends React.Component {
     this.navigateToSignIn();
   }
 
-  deleteInstitutionConfirmation(index) {
-    AlertIOS.alert('Unlink Bank', 'Are you sure you want to unlink this bank?', [
-      {
-        text: 'Yes',
-        onPress: () => this.handleSwitchValueChange(index),
-        style: 'cancel',
-      },
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-    ],
-   );
-  }
-
   deleteProfileConfirm() {
     AlertIOS.alert('Delete Profile', 'Do you wish to delete the profile?', [
       {
@@ -126,30 +111,12 @@ export default class SettingsScreen extends React.Component {
                 <Right>
                   <Switch
                     value={this.state.linkedAccounts[index].active}
-                    onValueChange={() => this.deleteInstitutionConfirmation(index)}
+                    onValueChange={() => console.log('switch flicked')}
                   />
                 </Right>
               </ListItem>
             );
           })}
-
-          {/* <ListItem last>
-            <Body>
-              <Text
-                style={{
-                  color: 'royalblue',
-                }}
-              >
-                Link New Bank
-              </Text>
-            </Body>
-            <Right>
-              <Icon
-                onPress={this.navigateToPlaid.bind(this)}
-                name="add"
-              />
-            </Right>
-          </ListItem> */}
 
           </List>
 

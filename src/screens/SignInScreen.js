@@ -39,12 +39,13 @@ export default class App extends React.Component {
       user: null,
       loading: false,
     };
-    this.login = this.login.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  login = () => {
+  handleLogin = () => {
     this.setState({ loading: true });
-    // authenticate with Google using expo API
+
+    // authenticate using expo Google API
     Google.logInAsync({
       iosClientId: Config.REACT_APP_IOS_CLIENT_ID,
       scopes: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
@@ -53,42 +54,54 @@ export default class App extends React.Component {
         if (result.type === 'success') {
           // authenticate locally with firebase
           const credential = firebase.auth.GoogleAuthProvider.credential(result.idToken);
-          firebase.auth().signInWithCredential(credential);
+          firebase.auth().signInWithCredential(credential)
+            .then(() => this.addUser(result.accessToken))
+            .catch(err => console.log(err));
         }
-        return result.accessToken;
-      })
-      .then((accessToken) => {
-        auth.currentUser.getIdToken()
-          .then((idToken) => {
-            const config = {
-              url: 'http://localhost:5000/testproject-6177f/us-central1/addUser',
-              payload: qs.stringify({ idToken, OAuthToken: accessToken }),
-            };
-            // send idToken and accessToken for server-side authentication and Google calendar creation
-            axios.post(config.url, config.payload)
-              .then((response) => {
-                console.log(response.data);
-                if (response.data.uniqueUserId) {
-                  store.dispatch({
-                    type: 'LOG_IN',
-                    uniqueUserId: response.data.uniqueUserId,
-                    userIdToken: idToken,
-                  });
-                  this.navigateToHome();
-                } else {
-                  const uid = auth.currentUser.uid;
-                  store.dispatch({
-                    type: 'LOG_IN',
-                    uniqueUserId: uid,
-                    firstTimeUser: true,
-                    userIdToken: idToken,
-                  });
-                  this.navigateToPlaid();
-                }
-              })
-              .catch(error => console.log(error));
-          });
       });
+  }
+
+  addUser = (accessToken) => {
+    auth.currentUser.getIdToken()
+    .then((idToken) => {
+      const config = {
+        url: 'http://localhost:5000/testproject-6177f/us-central1/addUser',
+        payload: qs.stringify({ idToken, OAuthToken: accessToken }),
+      };
+
+      // send idToken and accessToken for server-side authentication and Google calendar creation
+      axios.post(config.url, config.payload)
+        .then((response) => {
+          if (response.data.uniqueUserId) {
+            this.loginReturningUser(idToken, response.data.uniqueUserId);
+          } else {
+            const uid = auth.currentUser.uid;
+            this.linkBank(idToken, uid);
+          }
+        })
+        .catch(error => console.log(error));
+    });
+  }
+
+  loginReturningUser = (userIdToken, uniqueUserId) => {
+    store.dispatch({
+      type: 'LOG_IN',
+      uniqueUserId,
+      userIdToken,
+    });
+
+    this.navigateToHome();
+  }
+
+  linkBank = (userIdToken, uniqueUserId) => {
+    store.dispatch({
+      type: 'LOG_IN',
+      uniqueUserId,
+      firstTimeUser: true,
+      userIdToken,
+    });
+
+    this.navigateToPlaid();
   }
 
   navigateToHome = () => {
@@ -109,7 +122,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{'Where\'s My Money?'}</Text>
-        <Icon.Button name="google" backgroundColor="#DD4B39" onPress={this.login}>
+        <Icon.Button name="google" backgroundColor="#DD4B39" onPress={this.handleLogin}>
           <Text style={{ fontFamily: 'Arial', fontSize: 15, color: 'white' }}>Login with Google</Text>
         </Icon.Button>
       </View>
