@@ -25,11 +25,9 @@ export default class PlaidScreen extends React.Component {
   constructor() {
     super();
 
-    // retrieve unique user id from redux store and set to state
     this.state = {
       data: {},
       linkButtonPressed: false,
-      uniqueUserId: store.getState().uniqueUserId,
       loading: false,
       userIdToken: store.getState().userIdToken,
     };
@@ -56,7 +54,6 @@ export default class PlaidScreen extends React.Component {
       payload: qs.stringify({
         publicToken,
         institution,
-        uniqueUserId: this.state.uniqueUserId,
         idToken: this.state.userIdToken,
       }),
     };

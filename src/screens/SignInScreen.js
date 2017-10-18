@@ -58,6 +58,11 @@ export default class App extends React.Component {
             .then(() => this.addUser(result.accessToken))
             .catch(err => console.log(err));
         }
+      })
+      .catch((err) => {
+        console.log(err);
+        // Assuming user cancelled login
+        this.setState({ loading: false });
       });
   }
 
@@ -80,7 +85,8 @@ export default class App extends React.Component {
           }
         })
         .catch(error => console.log(error));
-    });
+    })
+    .catch(err => console.log(89, err));
   }
 
   loginReturningUser = (userIdToken, uniqueUserId) => {

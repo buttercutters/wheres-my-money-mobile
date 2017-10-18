@@ -22,7 +22,6 @@ export default class SettingsScreen extends React.Component {
     super();
     this.state = {
       switchState: true,
-      uniqueUserId: store.getState().uniqueUserId,
       linkedAccounts: store.getState().institutions,
       userIdToken: store.getState().userIdToken,
     };
@@ -38,7 +37,7 @@ export default class SettingsScreen extends React.Component {
   }
 
   logout() {
-    store.dispatch({ type: 'LOG_OUT' });
+    this.clearStore();
     this.navigateToSignIn();
   }
 
@@ -75,6 +74,14 @@ export default class SettingsScreen extends React.Component {
         ]);
       })
       .catch(error => console.log(error));
+
+    this.clearStore();
+  }
+
+  clearStore = () => {
+    store.dispatch({
+      type: 'LOG_OUT',
+    });
   }
 
   // Navigation =========
