@@ -5,3 +5,4 @@ config.json
 .vscode
 native-base-theme/
 .DS_Store
+resources
