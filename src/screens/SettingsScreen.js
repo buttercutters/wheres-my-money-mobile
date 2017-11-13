@@ -60,7 +60,7 @@ export default class SettingsScreen extends React.Component {
   deleteProfile() {
     const idToken = this.state.userIdToken;
     const config = {
-      url: Config.REACT_APP_DEV_DELETEUSERPROFILE,
+      url: Config.REACT_APP_LOCAL_DELETEUSERPROFILE,
       payload: qs.stringify({ idToken }),
     };
     axios

@@ -72,15 +72,15 @@ export default class App extends React.Component {
     auth.currentUser.getIdToken()
     .then((idToken) => {
       const config = {
-        url: Config.REACT_APP_DEV_ADDUSER,
+        url: Config.REACT_APP_LOCAL_ADDUSER,
         payload: qs.stringify({ idToken, OAuthToken: accessToken }),
       };
 
       // send idToken and accessToken for server-side authentication and Google calendar creation
       axios.post(config.url, config.payload)
         .then((response) => {
-          if (response.data.uniqueUserId) {
-            this.loginReturningUser(idToken, response.data.uniqueUserId);
+          if (response.data.items) {
+            this.loginReturningUser(idToken, response.data.items);
           } else {
             const uid = auth.currentUser.uid;
             this.linkBank(idToken, uid);
@@ -91,11 +91,16 @@ export default class App extends React.Component {
     .catch(err => console.log(89, err));
   }
 
-  loginReturningUser = (userIdToken, uniqueUserId) => {
+  loginReturningUser = (userIdToken, items) => {
     store.dispatch({
       type: 'LOG_IN',
-      uniqueUserId,
+      items,
       userIdToken,
+    });
+
+    store.dispatch({
+      type: 'LINK_BANK',
+      institution: items[Object.keys(items)[0]].name,
     });
 
     this.navigateToHome();

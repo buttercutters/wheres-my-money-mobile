@@ -50,7 +50,7 @@ export default class PlaidScreen extends React.Component {
 
   exchangePublicToken(publicToken, institution) {
     const config = {
-      url: Config.REACT_APP_DEV_EXCHANGEPUBLICTOKEN,
+      url: Config.REACT_APP_LOCAL_EXCHANGEPUBLICTOKEN,
       payload: qs.stringify({
         publicToken,
         institution,
@@ -84,7 +84,7 @@ export default class PlaidScreen extends React.Component {
       <PlaidAuthenticator
         onMessage={this.onMessage}
         publicKey={Config.REACT_APP_PLAID_PUBLIC_KEY}
-        webhook={Config.REACT_APP_DEV_PLAID_WEBHOOK}
+        webhook={Config.REACT_APP_SANDBOX_PLAID_WEBHOOK}
         env="sandbox"
         product="transactions"
         clientName="Wheres My Money"
