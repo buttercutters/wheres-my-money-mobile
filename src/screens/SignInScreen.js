@@ -47,7 +47,9 @@ export default class App extends React.Component {
 
     // authenticate using expo Google API
     Google.logInAsync({
+      behavior: 'web',
       iosClientId: Config.REACT_APP_IOS_CLIENT_ID,
+      iosStandaloneAppClientId: Config.REACT_APP_IOS_STANDALONE_APP_CLIENT_ID,
       scopes: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
     })
       .then((result) => {
@@ -70,7 +72,7 @@ export default class App extends React.Component {
     auth.currentUser.getIdToken()
     .then((idToken) => {
       const config = {
-        url: 'http://localhost:5000/testproject-6177f/us-central1/addUser',
+        url: Config.REACT_APP_DEV_ADDUSER,
         payload: qs.stringify({ idToken, OAuthToken: accessToken }),
       };
 

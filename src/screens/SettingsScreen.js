@@ -15,6 +15,7 @@ import {
 import axios from 'axios';
 import qs from 'qs';
 import store from '../store/userStore';
+import Config from '../../config.json';
 
 export default class SettingsScreen extends React.Component {
 
@@ -59,7 +60,7 @@ export default class SettingsScreen extends React.Component {
   deleteProfile() {
     const idToken = this.state.userIdToken;
     const config = {
-      url: 'http://localhost:5000/testproject-6177f/us-central1/deleteUserProfile',
+      url: Config.REACT_APP_DEV_DELETEUSERPROFILE,
       payload: qs.stringify({ idToken }),
     };
     axios

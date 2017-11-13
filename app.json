@@ -1,11 +1,16 @@
 {
   "expo": {
     "name": "Where's My Money",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "slug": "wheres-my-money",
     "sdkVersion": "21.0.0",
     "ios": {
-      "bundleIdentifier": "com.separatedconcerns.wheresmymoney"
+      "bundleIdentifier": "com.separatedconcerns.wheresmymoney",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.705585381632-u914k53k4h23o2678gouua4gd25igama"
+        }
+      }
     }
   }
 }

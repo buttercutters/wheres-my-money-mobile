@@ -6,3 +6,4 @@ config.json
 native-base-theme/
 .DS_Store
 resources
+app.json
