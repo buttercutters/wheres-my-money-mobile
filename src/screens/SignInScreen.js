@@ -72,10 +72,10 @@ export default class App extends React.Component {
     auth.currentUser.getIdToken()
     .then((idToken) => {
       const config = {
-        url: Config.REACT_APP_LOCAL_ADDUSER,
+        url: `${Config.REACT_APP_CURRENT_HOST}addUser`,
         payload: qs.stringify({ idToken, OAuthToken: accessToken }),
       };
-
+      console.log('78', config);
       // send idToken and accessToken for server-side authentication and Google calendar creation
       axios.post(config.url, config.payload)
         .then((response) => {
