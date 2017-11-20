@@ -55,6 +55,7 @@ export default class PlaidScreen extends React.Component {
         publicToken,
         institution,
         idToken: this.state.userIdToken,
+        webhook: `${Config.REACT_APP_WEBHOOK_HOST}`,
       }),
     };
     axios.post(config.url, config.payload)
